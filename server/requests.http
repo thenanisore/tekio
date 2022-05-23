@@ -1,0 +1,162 @@
+@host = http://localhost:8080
+
+###
+
+GET {{host}}/util/info HTTP/1.1
+
+###
+
+POST {{host}}/util/echo HTTP/1.1
+content-type: application/json
+
+{
+    "params": {
+      "a": "one",
+      "b": "two"
+    }
+}
+
+
+###
+
+POST {{host}}/user/sign_up HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "test@test",
+  "password": "123",
+  "username": "me"
+}
+
+###
+
+POST {{host}}/user/sign_up HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "thirddddd@one",
+  "password": "12345"
+}
+
+###
+
+POST {{host}}/user/sign_in HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "test@test",
+  "password": "123"
+}
+
+###
+
+GET {{host}}/user/profile/1 HTTP/1.1
+Content-Type: application/json
+
+###
+
+PUT {{host}}/user/profile HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU2MTI0OTc4MSwiaWF0IjoxNTU4NjE5OTgxLCJqdGkiOiI2ODY5MjczOGIxMDI0Mjk5NDU4NDQ5NWU2MmQ4OTAwYyJ9.BH80Y69hA8PIxDjrcp5oRV7uKxk4ISjgfxJ1nThZqno
+
+{
+  "username": "test",
+  "firstName": "Oleg",
+  "lastName": "Ivanov",
+  "birthDate": "1994-12-21",
+  "picture": "kekus"
+}
+
+###
+
+PUT {{host}}/user/settings HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU2MTI0OTc4MSwiaWF0IjoxNTU4NjE5OTgxLCJqdGkiOiI2ODY5MjczOGIxMDI0Mjk5NDU4NDQ5NWU2MmQ4OTAwYyJ9.BH80Y69hA8PIxDjrcp5oRV7uKxk4ISjgfxJ1nThZqno
+
+{
+  "minutesPerDay": 30,
+  "preferredOrder": "Aozora"
+}
+
+###
+
+GET {{host}}/user HTTP/1.1
+Content-Type: application/json
+authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU2MTQ2MTg5NywiaWF0IjoxNTU4ODMyMDk3LCJqdGkiOiI5MTVkZDdkZjAzYzM5MjE2MDFiMTUyYTU0NzgwMzU1NCJ9.63V0_TTPyMwGNCqZy1h0F9-zPVxHWICks5EnctGgGPc
+
+###
+
+GET {{host}}/kanji HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST {{host}}/kanji/recognize HTTP/1.1
+Content-Type: application/json
+
+{
+  "strokes": [],
+  "count": 10
+}
+
+###
+
+GET {{host}}/kanji/1 HTTP/1.1
+Content-Type: application/json
+
+###
+
+PUT {{host}}/user/settings HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU2MTI0OTc4MSwiaWF0IjoxNTU4NjE5OTgxLCJqdGkiOiI2ODY5MjczOGIxMDI0Mjk5NDU4NDQ5NWU2MmQ4OTAwYyJ9.BH80Y69hA8PIxDjrcp5oRV7uKxk4ISjgfxJ1nThZqno
+
+{
+    "minutesPerDay": 35,
+    "preferredOrder": "Aozora",
+    "adaptiveOrder": true,
+    "adaptiveScheduling": true,
+    "batchSize": 3,
+    "autoReveal": true
+  }
+
+###
+
+GET {{host}}/user/answers?from=0
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU1ODUxODgyNiwiaWF0IjoxNTU1ODg5MDI2LCJqdGkiOiI4MWM4YzIwOGEyNTQzYWU0ZjEwMGM2ZDg3NTgzNzExZiJ9.URPVlr5lLpBui5aXprNtSZTsT9WYLOkgAqfPRMXxdv8
+
+###
+
+POST {{host}}/user/answers
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU1ODUxODgyNiwiaWF0IjoxNTU1ODg5MDI2LCJqdGkiOiI4MWM4YzIwOGEyNTQzYWU0ZjEwMGM2ZDg3NTgzNzExZiJ9.URPVlr5lLpBui5aXprNtSZTsT9WYLOkgAqfPRMXxdv8
+
+{
+  "answers": [
+    {
+      "user_item_id": "1",
+      "answered_at": 1557536928,
+      "time_taken": 3000,
+      "is_correct": true,
+      "answer": "ans1"
+    },
+    ...
+  ]
+}
+
+###
+
+GET {{host}}/user/kanji?ids=
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU2MTE1NzMyNSwiaWF0IjoxNTU4NTI3NTI1LCJqdGkiOiIyOTkyYzEzYWQ4NTE1OGU1N2EzYWQ1ODdjNWJjMTAxZiJ9.5DWrw1swzWwF2fC-svoRP05YiGNiBxrtX1zslgF10po
+
+###
+
+GET {{host}}/user/kanji/走
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjRcIiIsImV4cCI6MTU2MTA3NjAwNCwiaWF0IjoxNTU4NDQ2MjA0LCJqdGkiOiIxM2FmMWFjOGNlMmMzYTJkZmRlOWI0YWNkZWQwZTdiNSJ9.gM9rTDx11MbCxTwnhihKay-utZcVUu6esZlXoKCX_Pw
+
+###
+
+POST {{host}}/user/lessons
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJcIjFcIiIsImV4cCI6MTU2MTI0OTc4MSwiaWF0IjoxNTU4NjE5OTgxLCJqdGkiOiI2ODY5MjczOGIxMDI0Mjk5NDU4NDQ5NWU2MmQ4OTAwYyJ9.BH80Y69hA8PIxDjrcp5oRV7uKxk4ISjgfxJ1nThZqno
+
+{
+  "unlocked": ["1225"]
+}
